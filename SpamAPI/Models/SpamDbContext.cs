@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpamAPI.Models
 {
@@ -13,5 +14,6 @@ namespace SpamAPI.Models
         {
             modelBuilder.Entity<Message>().ToTable("Message");
         }
+
     }
 }

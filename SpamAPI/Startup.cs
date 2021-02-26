@@ -29,6 +29,14 @@ namespace SpamAPI
         {
             services.AddDbContext<SpamDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SpamDbConnectionString")));
             services.AddControllers();
+
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:3000"));
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +50,10 @@ namespace SpamAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+
+            app.UseCors(options => options.WithOrigins("http://localhost:3000"));
+
 
             app.UseAuthorization();
 

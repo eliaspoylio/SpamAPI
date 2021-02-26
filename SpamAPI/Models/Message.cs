@@ -9,7 +9,7 @@ namespace SpamAPI.Models
     {
         public int MessageId { get; set; }
         public string MessageFrom { get; set; }
-        public string MessageAddress { get; set; }
+        public string MessageSubject { get; set; }
         public string MessageDate { get; set; }
         public string MessageContent { get; set; }
     }
