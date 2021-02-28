@@ -22,7 +22,6 @@ namespace SpamAPI.Controllers
         }
 
         // GET: api/Messages
-        [EnableCors("AllowOrigin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessage()
         {
@@ -30,7 +29,6 @@ namespace SpamAPI.Controllers
         }
 
         // GET: api/Messages/5
-        [EnableCors("AllowOrigin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Message>> GetMessage(int id)
         {
@@ -44,6 +42,18 @@ namespace SpamAPI.Controllers
             return message;
         }
 
+        // GET: api/Messages/size
+        // return number of rows in table
+        [HttpGet]
+        [Route("size")]
+        public async Task<int> GetTableSize()
+        {
+            var query = from row in this._context.Message
+
+                        select row.MessageId;
+
+            return await query.CountAsync();
+        }
 
     }
 

@@ -31,10 +31,12 @@ namespace SpamAPI
             services.AddControllers();
 
 
-            services.AddCors(c =>
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:3000"));
-            });
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
 
         }
@@ -51,9 +53,7 @@ namespace SpamAPI
 
             app.UseRouting();
 
-
-            app.UseCors(options => options.WithOrigins("http://localhost:3000"));
-
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 
